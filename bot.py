@@ -281,76 +281,44 @@ def get_market_analysis(pair_key, tf_key):
         confidence_bar = conf_bar(confidence)
 
         return f"""
-🏦 <b>INSTITUTIONAL FLOW CHECK</b>
+👑 <b>EGI CAPITAL ELITE</b>
+<code>Institutional Signal Desk</code>
 
-👑 <b>EGI CAPITAL ELITE VVIP+</b>
+━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━
-
-💱 <b>{pair["name"]}</b> • {tf_key}
-
+💱 <b>{pair["name"]}</b> • <b>{tf_key}</b>
 🕒 {wib_now.strftime("%H:%M")} WIB
 🌍 {session_name}
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━
 
-🤖 <b>AI MARKET BIAS</b>
+⚪ <b>NO TRADE</b>
 
-⚪ <b>SIDEWAYS / NO VALID SETUP</b>
+Market belum memberikan konfirmasi
+multi-timeframe yang valid.
 
-Multi-timeframe belum searah.
-Hindari entry agar tidak floating lama.
+━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━
+📊 <b>MTF Check</b>
+H1   <b>{h1_bias}</b>
+M15  <b>{m15_bias}</b>
+M5   <b>{m5_bias}</b>
 
-📊 <b>MTF CONFIRMATION</b>
+━━━━━━━━━━━━
 
-H1  ➜ <b>{h1_bias}</b>
-M15 ➜ <b>{m15_bias}</b>
-M5  ➜ <b>{m5_bias}</b>
+🧠 <b>AI Verdict</b>
+Tunggu H1, M15, dan M5 searah.
+Tidak ada entry lebih baik daripada
+entry yang dipaksakan.
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━
 
-⛔ <b>TRADE PLAN</b>
-
-<b>NO TRADE</b>
-
-━━━━━━━━━━━━━━━━━━
-
-🧠 <b>AI VERDICT</b>
-
-❌ Institutional confirmation belum valid.
-❌ H1, M15, dan M5 belum satu arah.
-✅ Tunggu setup berikutnya.
-✅ Fokus hanya entry saat MTF selaras.
-
-━━━━━━━━━━━━━━━━━━
-
-⚡ <b>SETUP QUALITY</b>
-
-🏅 Grade : <b>C</b>
-📊 Confidence : <b>{confidence}%</b>
-
+🏅 Grade <b>C</b> • Confidence <b>{confidence}%</b>
 {confidence_bar}
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━
 
-⚠️ <b>EXECUTION RULE</b>
-
-Jangan paksa entry.
-Tunggu H1 + M15 + M5 searah.
-
-━━━━━━━━━━━━━━━━━━
-
-⚠️ <b>DISCLAIMER</b>
-
-Bukan saran finansial.
-Trading mengandung risiko tinggi.
-Gunakan stop loss dan kelola modal dengan bijak.
-
-━━━━━━━━━━━━━━━━━━
-
-👑 <b>EGI CAPITAL ELITE VVIP+</b>
+⚠️ Bukan saran finansial.
 """
 
     # SIGNAL VALID
@@ -440,114 +408,72 @@ Gunakan stop loss dan kelola modal dengan bijak.
     rr = round(abs(tp2 - entry) / max(abs(entry - sl), 0.0001), 1)
     confidence_bar = conf_bar(confidence)
 
+    bias_icon = "📈 BULLISH" if signal == "BUY" else "📉 BEARISH"
+    signal_icon = "🟢 BUY" if signal == "BUY" else "🔴 SELL"
+
     return f"""
-🏦 <b>INSTITUTIONAL FLOW DETECTED</b>
+👑 <b>EGI CAPITAL ELITE</b>
+<code>Institutional Signal Desk</code>
 
-👑 <b>EGI CAPITAL ELITE VVIP+</b>
+━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━
-
-💱 <b>{pair["name"]}</b> • {tf_key}
-
+💱 <b>{pair["name"]}</b> • <b>{tf_key}</b>
 🕒 {wib_now.strftime("%H:%M")} WIB
 🌍 {session_name}
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━
 
-🤖 <b>AI MARKET BIAS</b>
+<b>MARKET BIAS</b>
+{bias_icon}
 
-{"📈 BULLISH" if signal=="BUY" else "📉 BEARISH"}
+<b>SIGNAL</b>
+{signal_icon}
 
-{ai_note}
+━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━
-
-🔥 <b>TRADE PLAN</b>
-
-{"🟢 STRONG BUY" if signal=="BUY" else "🔴 STRONG SELL"}
-
-🎯 <b>INSTITUTIONAL ENTRY</b>
+📍 <b>Entry Area</b>
 <code>{fmt(entry_low)} - {fmt(entry_high)}</code>
 
-💎 <b>ELITE ENTRY (SNIPER)</b>
+💎 <b>Sniper Zone</b>
 <code>{fmt(zero_low)} - {fmt(zero_high)}</code>
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━
 
-🛡 <b>RISK MANAGEMENT</b>
-
-🛑 Stop Loss
+🛑 <b>Stop Loss</b>
 <code>{fmt(sl)}</code>
 
-━━━━━━━━━━━━━━━━━━
+🎯 <b>Targets</b>
+TP1  <code>{fmt(tp1)}</code>
+TP2  <code>{fmt(tp2)}</code>
+TP3  <code>{fmt(tp3)}</code>
 
-🎯 <b>PROFIT TARGET</b>
+⚖️ <b>RR</b>  1 : {rr}
 
-TP1 ➜ <code>{fmt(tp1)}</code>
-TP2 ➜ <code>{fmt(tp2)}</code>
-TP3 ➜ <code>{fmt(tp3)}</code>
+━━━━━━━━━━━━
 
-⚖️ RR ➜ <b>1 : {rr}</b>
-
-━━━━━━━━━━━━━━━━━━
-
-⚡ <b>SETUP QUALITY</b>
-
-🏅 Grade : <b>{grade}</b>
-📊 Confidence : <b>{confidence}%</b>
-
+🏅 <b>Setup Quality</b>
+Grade <b>{grade}</b> • Confidence <b>{confidence}%</b>
 {confidence_bar}
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━
 
-🧠 <b>AI VERDICT</b>
-
-{"✅ H1 Bullish" if h1_bias=="BULLISH" else "✅ H1 Bearish"}
-{"✅ M15 Bullish" if m15_bias=="BULLISH" else "✅ M15 Bearish"}
-{"✅ M5 Bullish" if m5_bias=="BULLISH" else "✅ M5 Bearish"}
-
-✅ Multi-Timeframe Confirmed
-✅ Institutional Flow Aligned
-✅ Liquidity Direction Confirmed
-
-━━━━━━━━━━━━━━━━━━
-
-📝 <b>ENTRY REASON</b>
-
-{entry_reason}
-
-━━━━━━━━━━━━━━━━━━
-
-🚨 <b>EXECUTION RULE</b>
-
-❌ Jangan entry sekarang
-✅ Tunggu harga masuk:
-
-💎 <b>ELITE ENTRY ZONE</b>
-
-Entry di luar area ini berpotensi menyebabkan floating lebih lama.
-
-━━━━━━━━━━━━━━━━━━
-
-🎖 <b>TRADER NOTE</b>
+🧠 <b>AI Verdict</b>
+✅ H1  {h1_bias}
+✅ M15 {m15_bias}
+✅ M5  {m5_bias}
 
 {market_note}
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━
 
-⚠️ <b>DISCLAIMER</b>
+⚠️ DISCLAIMER 
 
-Bukan saran finansial.
-Trading mengandung risiko tinggi.
-Gunakan stop loss.
-Jangan overlot.
-Kelola modal dengan bijak.
-
-━━━━━━━━━━━━━━━━━━
-
-👑 <b>EGI CAPITAL ELITE VVIP+</b>
+ Bukan saran finansial.
+ Trading mengandung risiko tinggi. 
+ Gunakan stop loss.
+ Jangan overlot.
+ Kelola modal dengan bijak.
 """
-
 
 # ==============================
 # NEWS IMPACT ENGINE
@@ -733,61 +659,48 @@ def analyze_fomc(tone):
 # ==============================
 def main_menu(user_id):
     user = get_user(user_id)
+
     if user["premium"]:
-        status = "💎 PREMIUM UNLIMITED"
+        status_line = "💎 <b>ELITE MEMBER</b>"
+        access_line = "Unlimited Access"
     else:
-        status = f"🆓 TRIAL Market {TRIAL_LIMIT_MARKET - user['market_used']} | News {TRIAL_LIMIT_NEWS - user['news_used']}"
+        market_left = TRIAL_LIMIT_MARKET - user["market_used"]
+        news_left = TRIAL_LIMIT_NEWS - user["news_used"]
+        status_line = "🆓 <b>TRIAL ACCESS</b>"
+        access_line = f"Market {market_left}x • News {news_left}x"
 
     text = f"""
-    ━━━━━━━━━━━━━━━━━━━━━━
-    👑 <b>EGI CAPITAL ELITE</b>
-    ━━━━━━━━━━━━━━━━━━━━━━
+👑 <b>EGI CAPITAL ELITE</b>
+<code>Institutional Market Intelligence</code>
 
-    🏦 <b>Institutional AI Engine</b>
+━━━━━━━━━━━━━━━━━━
 
-    AI-Powered Forex • Gold • Crypto Analysis
+{status_line}
+{access_line}
 
-    ━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━
 
-    💎 <b>STATUS MEMBER</b>
+📊 <b>Elite Market Scan</b>
+MTF Bias • Entry Area • Sniper Zone
 
-    ✅ <b>PREMIUM UNLIMITED</b>
+📰 <b>Smart News Desk</b>
+CPI • NFP • FOMC • PMI
 
-    ━━━━━━━━━━━━━━━━━━━━━━
+🚨 <b>Daily Market Brief</b>
+Asia • London • New York
 
-    ⚡ <b>FITUR ELITE</b>
+━━━━━━━━━━━━━━━━━━
 
-    📊 Multi-Timeframe AI
-    (H1 • M15 • M5)
+🤖 <b>AI Status</b> : <b>ONLINE</b>
 
-    🎯 Institutional Entry
+Pilih fitur di bawah.
+"""
 
-    💎 Elite Sniper Zone
-
-    📰 Smart News Engine
-
-    🚨 Auto Market Broadcast
-
-    ━━━━━━━━━━━━━━━━━━━━━━
-
-    🤖 <b>AI SYSTEM STATUS</b>
-
-    🟢 <b>ONLINE</b>
-
-    Market akan difilter secara otomatis.
-
-    Hanya setup dengan probabilitas
-    tinggi yang akan diberikan.
-
-    ━━━━━━━━━━━━━━━━━━━━━━
-
-    👇 <b>Pilih menu di bawah</b>
-    """
     keyboard = [
-        [InlineKeyboardButton("📊 Analisa Market", callback_data="menu_pairs")],
-        [InlineKeyboardButton("📰 News Impact", callback_data="menu_news")],
-        [InlineKeyboardButton("👤 Akun Saya", callback_data="account")],
-        [InlineKeyboardButton("💎 Upgrade Premium", callback_data="upgrade")],
+        [InlineKeyboardButton("📊 Elite Market Scan", callback_data="menu_pairs")],
+        [InlineKeyboardButton("📰 Smart News Desk", callback_data="menu_news")],
+        [InlineKeyboardButton("👤 Membership", callback_data="account")],
+        [InlineKeyboardButton("💎 Upgrade Elite", callback_data="upgrade")],
     ]
     return text, InlineKeyboardMarkup(keyboard)
 
@@ -918,37 +831,34 @@ Trial News: <b>{news_left}</b>
 
     elif data == "upgrade":
         text = f"""
-text = f"""
 👑 <b>EGI CAPITAL ELITE</b>
 
-💎 PREMIUM UNLIMITED
+💎 <b>PREMIUM UNLIMITED</b>
 
 ━━━━━━━━━━━━
 
-📊 AI Market Analysis
-
-🎯 Elite Entry Zone
-
-💎 Sniper Entry
-
-📰 High Impact News
-
-🚨 Daily Broadcast
+📊 Elite Market Scan
+🎯 Institutional Entry
+💎 Sniper Zone
+📰 Smart News Desk
+🚨 Daily Market Brief
 
 ━━━━━━━━━━━━
 
-💰 <b>Lifetime :</b>
-
+💰 <b>Lifetime Access</b>
 <code>Rp 499.000</code>
 
 ━━━━━━━━━━━━
 
-💳 <b>Payment :</b>
-
+💳 <b>Payment</b>
 <code>{PAYMENT_TEXT}</code>
 
-📩 Admin:
+📩 <b>Admin</b>
 {ADMIN_CONTACT}
+
+━━━━━━━━━━━━
+
+Setelah bayar, kirim bukti ke admin.
 """
         await q.edit_message_text(text, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⬅️ Kembali", callback_data="back_start")]]), parse_mode="HTML")
 
